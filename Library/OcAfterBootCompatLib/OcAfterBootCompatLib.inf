@@ -65,7 +65,7 @@
   OcCpuLib
   OcCryptoLib
   OcDeviceTreeLib
-  OcLogAggregatorLib
+#  OcLogAggregatorLib
   OcMemoryLib
   OcOSInfoLib
   OcRngLib

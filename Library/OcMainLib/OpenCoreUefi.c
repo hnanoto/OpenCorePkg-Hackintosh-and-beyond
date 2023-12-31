@@ -398,18 +398,19 @@ OcReinstallProtocols (
   if (OcDevicePathPropertyInstallProtocol (Config->Uefi.ProtocolOverrides.DeviceProperties) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install device properties protocol\n"));
   }
-
+#ifndef CLOVER_BUILD
   if (OcAppleImageConversionInstallProtocol (Config->Uefi.ProtocolOverrides.AppleImageConversion) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install image conversion protocol\n"));
   }
-
+#endif
   if (OcAppleDebugLogInstallProtocol (Config->Uefi.ProtocolOverrides.AppleDebugLog) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install debug log protocol\n"));
   }
-
+#ifndef CLOVER_BUILD
   if (OcSmcIoInstallProtocol (Config->Uefi.ProtocolOverrides.AppleSmcIo, Config->Misc.Security.AuthRestart) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install smc i/o protocol\n"));
   }
+#endif
 
   if (OcAppleUserInterfaceThemeInstallProtocol (Config->Uefi.ProtocolOverrides.AppleUserInterfaceTheme) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install user interface theme protocol\n"));
@@ -423,9 +424,11 @@ OcReinstallProtocols (
     DEBUG ((DEBUG_INFO, "OC: Failed to install hash services protocol\n"));
   }
 
+#ifndef CLOVER_BUILD
   if (OcAppleKeyMapInstallProtocols (Config->Uefi.ProtocolOverrides.AppleKeyMap) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install key map protocols\n"));
   }
+#endif
 
   if (OcPciIoInstallProtocol (Config->Uefi.ProtocolOverrides.PciIo) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install cpuio/pcirootbridgeio overrides\n"));
@@ -466,9 +469,11 @@ OcReinstallProtocols (
     DEBUG ((DEBUG_INFO, "OC: Failed to install apple event protocol\n"));
   }
 
+#ifndef CLOVER_BUILD
   if (OcFirmwareVolumeInstallProtocol (Config->Uefi.ProtocolOverrides.FirmwareVolume) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install firmware volume protocol\n"));
   }
+#endif
 
   if (OcOSInfoInstallProtocol (Config->Uefi.ProtocolOverrides.OSInfo) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install os info protocol\n"));

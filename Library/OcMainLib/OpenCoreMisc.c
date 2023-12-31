@@ -416,6 +416,50 @@ OcMiscGetVersionString (
   return mOpenCoreVersion;
 }
 
+// jief : This is the same as the beginning of OcMiscEarlyInit.
+//        I could replace the beginning of OcMiscEarlyInit by a call to this function,
+//        but it makes it harder to understand for diff algorithm.
+#ifdef CLOVER_BUILD
+EFI_STATUS
+ClOcReadConfigurationFile(
+  IN  OC_STORAGE_CONTEXT *Storage,
+  IN  CONST CHAR16* configPath,
+  OUT OC_GLOBAL_CONFIG   *Config
+ )
+{
+  EFI_STATUS                Status;
+  CHAR8                     *ConfigData;
+  UINT32                    ConfigDataSize;
+
+  SetMem(Config, sizeof(*Config), 0);
+
+  ConfigData = OcStorageReadFileUnicode (
+    Storage,
+    OPEN_CORE_CONFIG_PATH,
+    &ConfigDataSize
+    );
+
+  if (ConfigData != NULL) {
+    DEBUG ((DEBUG_INFO, "OC: Loaded configuration of %u bytes\n", ConfigDataSize));
+
+    Status = OcConfigurationInit (Config, ConfigData, ConfigDataSize, NULL);
+    if (EFI_ERROR (Status)) {
+      DEBUG ((DEBUG_ERROR, "OC: Failed to parse configuration!\n"));
+      CpuDeadLoop ();
+      return EFI_UNSUPPORTED; ///< Should be unreachable.
+    }
+
+    FreePool (ConfigData);
+  } else {
+    DEBUG ((DEBUG_ERROR, "OC: Failed to load configuration!\n"));
+    CpuDeadLoop ();
+    return EFI_UNSUPPORTED; ///< Should be unreachable.
+  }
+  return EFI_SUCCESS;
+}
+#endif
+
+
 EFI_STATUS
 OcMiscEarlyInit (
   IN  OC_STORAGE_CONTEXT  *Storage,
