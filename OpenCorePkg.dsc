@@ -54,7 +54,7 @@
   BaseMemoryLib|MdePkg/Library/BaseMemoryLibRepStr/BaseMemoryLibRepStr.inf
   BaseOverflowLib|MdePkg/Library/BaseOverflowLib/BaseOverflowLib.inf
   BaseRngLib|MdePkg/Library/BaseRngLib/BaseRngLib.inf
-  BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
+#  BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
   CacheMaintenanceLib|MdePkg/Library/BaseCacheMaintenanceLib/BaseCacheMaintenanceLib.inf
   CpuLib|MdePkg/Library/BaseCpuLib/BaseCpuLib.inf
   DebugLib|OpenCorePkg/Library/OcDebugLibProtocol/OcDebugLibProtocol.inf
@@ -65,7 +65,7 @@
   DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
   FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
   FrameBufferBltLib|MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.inf
-  HandleParsingLib|ShellPkg/Library/UefiHandleParsingLib/UefiHandleParsingLib.inf
+#  HandleParsingLib|ShellPkg/Library/UefiHandleParsingLib/UefiHandleParsingLib.inf
   OrderedCollectionLib|MdePkg/Library/BaseOrderedCollectionRedBlackTreeLib/BaseOrderedCollectionRedBlackTreeLib.inf
   HiiLib|MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
   HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
@@ -152,8 +152,8 @@
   PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
   ReportStatusCodeLib|MdePkg/Library/BaseReportStatusCodeLibNull/BaseReportStatusCodeLibNull.inf
   SerialPortLib|MdeModulePkg/Library/BaseSerialPortLib16550/BaseSerialPortLib16550.inf
-  ShellCommandLib|ShellPkg/Library/UefiShellCommandLib/UefiShellCommandLib.inf
-  ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
+#  ShellCommandLib|ShellPkg/Library/UefiShellCommandLib/UefiShellCommandLib.inf
+#  ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
   SortLib|MdeModulePkg/Library/UefiSortLib/UefiSortLib.inf
   SynchronizationLib|MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib.inf
   UefiApplicationEntryPoint|OpenCorePkg/Library/OcApplicationEntryPoint/UefiApplicationEntryPoint.inf
@@ -224,7 +224,7 @@
     <LibraryClasses>
       BaseMemoryLib|MdePkg/Library/BaseMemoryLibOptDxe/BaseMemoryLibOptDxe.inf
   }
-  OpenCorePkg/Application/ControlMsrE2/ControlMsrE2.inf
+#  OpenCorePkg/Application/ControlMsrE2/ControlMsrE2.inf
   OpenCorePkg/Debug/GdbSyms/GdbSyms.inf
   OpenCorePkg/Library/OcAcpiLib/OcAcpiLib.inf
   OpenCorePkg/Library/OcAfterBootCompatLib/OcAfterBootCompatLib.inf
@@ -264,7 +264,7 @@
   OpenCorePkg/Library/OcDriverConnectionLib/OcDriverConnectionLib.inf
   OpenCorePkg/Library/OcFileLib/OcFileLib.inf
   OpenCorePkg/Library/OcFirmwarePasswordLib/OcFirmwarePasswordLib.inf
-  OpenCorePkg/Library/OcFirmwareVolumeLib/OcFirmwareVolumeLib.inf
+#  OpenCorePkg/Library/OcFirmwareVolumeLib/OcFirmwareVolumeLib.inf
   OpenCorePkg/Library/OcFlexArrayLib/OcFlexArrayLib.inf
   OpenCorePkg/Library/OcGuardLib/OcGuardLib.inf
   OpenCorePkg/Library/OcHashServicesLib/OcHashServicesLib.inf
@@ -296,7 +296,7 @@
   OpenCorePkg/Library/OcVirtualFsLib/OcVirtualFsLib.inf
   OpenCorePkg/Library/OcWaveLib/OcWaveLib.inf
   OpenCorePkg/Library/OcXmlLib/OcXmlLib.inf
-  OpenCorePkg/Legacy/BootPlatform/BiosVideo/BiosVideo.inf
+#  OpenCorePkg/Legacy/BootPlatform/BiosVideo/BiosVideo.inf
   OpenCorePkg/Platform/CrScreenshotDxe/CrScreenshotDxe.inf
   OpenCorePkg/Platform/OpenCanopy/OpenCanopy.inf
   OpenCorePkg/Platform/OpenLegacyBoot/OpenLegacyBoot.inf
@@ -324,14 +324,14 @@
   OpenCorePkg/Platform/ResetNvramEntry/ResetNvramEntry.inf
   OpenCorePkg/Platform/ToggleSipEntry/ToggleSipEntry.inf
   OpenCorePkg/Staging/AudioDxe/AudioDxe.inf
-  OpenCorePkg/Staging/EnableGop/EnableGop.inf {
-    <LibraryClasses>
-      DebugLib|OpenCorePkg/Library/OcDebugLibNull/OcDebugLibNull.inf
-  }
-  OpenCorePkg/Staging/EnableGop/EnableGopDirect.inf {
-    <LibraryClasses>
-      DebugLib|OpenCorePkg/Library/OcDebugLibNull/OcDebugLibNull.inf
-  }
+#  OpenCorePkg/Staging/EnableGop/EnableGop.inf {
+#    <LibraryClasses>
+#      DebugLib|OpenCorePkg/Library/OcDebugLibNull/OcDebugLibNull.inf
+#  }
+#  OpenCorePkg/Staging/EnableGop/EnableGopDirect.inf {
+#    <LibraryClasses>
+#      DebugLib|OpenCorePkg/Library/OcDebugLibNull/OcDebugLibNull.inf
+#  }
   OpenCorePkg/Staging/OpenHfsPlus/OpenHfsPlus.inf
   OpenCorePkg/Tests/AcpiTest/AcpiTest.inf
   OpenCorePkg/Tests/AcpiTest/AcpiTestApp.inf
@@ -343,28 +343,28 @@
   OpenCorePkg/Tests/PropertyTest/PropertyTestApp.inf
   OpenCorePkg/Tests/SmbiosTest/SmbiosTest.inf
   OpenCorePkg/Tests/SmbiosTest/SmbiosTestApp.inf
-  # UEFI Shell with all commands integrated
-  ShellPkg/Application/Shell/Shell.inf {
-   <Defines>
-      FILE_GUID = EA4BB293-2D7F-4456-A681-1F22F42CD0BC
-    <PcdsFixedAtBuild>
-      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
-      # For some reason ShellPkg overrides this, so do we.
-      gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|16000
-    <LibraryClasses>
-      # Use custom BootServicesTable
-      UefiBootServicesTableLib|OpenCorePkg/Library/OcBootServicesTableLib/UefiBootServicesTableLib.inf
-      # Add the original commands.
-      NULL|ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellLevel1CommandsLib/UefiShellLevel1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellLevel3CommandsLib/UefiShellLevel3CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellDriver1CommandsLib/UefiShellDriver1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellInstall1CommandsLib/UefiShellInstall1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellAcpiViewCommandLib/UefiShellAcpiViewCommandLib.inf
-  }
+#  # UEFI Shell with all commands integrated
+#  ShellPkg/Application/Shell/Shell.inf {
+#   <Defines>
+#      FILE_GUID = EA4BB293-2D7F-4456-A681-1F22F42CD0BC
+#    <PcdsFixedAtBuild>
+#      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
+#      # For some reason ShellPkg overrides this, so do we.
+#      gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|16000
+#    <LibraryClasses>
+#      # Use custom BootServicesTable
+#      UefiBootServicesTableLib|OpenCorePkg/Library/OcBootServicesTableLib/UefiBootServicesTableLib.inf
+#      # Add the original commands.
+#      NULL|ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellLevel1CommandsLib/UefiShellLevel1CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellLevel3CommandsLib/UefiShellLevel3CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellDriver1CommandsLib/UefiShellDriver1CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellInstall1CommandsLib/UefiShellInstall1CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
+#      NULL|ShellPkg/Library/UefiShellAcpiViewCommandLib/UefiShellAcpiViewCommandLib.inf
+#  }
 
   # Ext4 driver
   Ext4Pkg/Ext4Dxe/Ext4Dxe.inf
@@ -372,7 +372,7 @@
   #
   # Network Support
   #
-  !include NetworkPkg/NetworkComponents.dsc.inc
+#  !include NetworkPkg/NetworkComponents.dsc.inc
 
 [LibraryClasses]
   NULL|OpenCorePkg/Library/OcCompilerIntrinsicsLib/OcCompilerIntrinsicsLib.inf
@@ -394,18 +394,18 @@
 !endif
   gOpenCorePkgTokenSpaceGuid.PcdCanaryAllowRdtscFallback|TRUE
 
-  # ImageLoader settings
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRtRelocAllowTargetMismatch|FALSE
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderHashProhibitOverlap|TRUE
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderLoadHeader|TRUE
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderDebugSupport|FALSE
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderAllowMisalignedOffset|FALSE
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRemoveXForWX|TRUE
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderWXorX|TRUE
+#  # ImageLoader settings
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRtRelocAllowTargetMismatch|FALSE
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderHashProhibitOverlap|TRUE
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderLoadHeader|TRUE
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderDebugSupport|FALSE
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderAllowMisalignedOffset|FALSE
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRemoveXForWX|TRUE
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderWXorX|TRUE
   gEfiMdePkgTokenSpaceGuid.PcdImageLoaderAlignmentPolicy|0xFFFFFFFF
-  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRelocTypePolicy|0xFFFFFFFF
-  gEfiMdePkgTokenSpaceGuid.PcdImageProtectionPolicy|0x00000003
-  gEfiMdePkgTokenSpaceGuid.PcdUefiImageFormatSupportNonFv|0x01
+#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRelocTypePolicy|0xFFFFFFFF
+#  gEfiMdePkgTokenSpaceGuid.PcdImageProtectionPolicy|0x00000003
+#  gEfiMdePkgTokenSpaceGuid.PcdUefiImageFormatSupportNonFv|0x01
 
 [PcdsPatchableInModule]
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterAccessWidth|8

@@ -43,7 +43,7 @@
   #
   # DXE Drivers (other .inf files for conversion to .ffs may be added here)
   #
-  INF  OpenCorePkg/Staging/EnableGop/EnableGop.inf
+  #INF  OpenCorePkg/Staging/EnableGop/EnableGop.inf
 
 !if ($(ARCH) == X64)
   [FV.EnableGopDirectX64]
@@ -78,7 +78,7 @@
   # EnableGopDirect intentionally has the same GUID as EnableGop, so it must go in a separate FV.
   # (We don't care about the FV, rather the intermediate FFS files which are generated during build.)
   #
-  INF  OpenCorePkg/Staging/EnableGop/EnableGopDirect.inf
+#  INF  OpenCorePkg/Staging/EnableGop/EnableGopDirect.inf
 
 !endif
 
@@ -95,13 +95,13 @@
 # GUIDED section, but this is different from a Tiano compressed COMPRESS section and legacy Mac
 # firmware also cannot read it.
 #
-[Rule.Common.DXE_DRIVER]
-  FILE DRIVER = $(NAMED_GUID) Checksum {
-    COMPRESS TIANO {
-      GUIDED {
-        DXE_DEPEX    DXE_DEPEX Optional      $(INF_OUTPUT)/$(MODULE_NAME).depex
-        PE32         PE32                    $(INF_OUTPUT)/$(MODULE_NAME).efi
-        UI           STRING="$(MODULE_NAME) $(VERSION_STRING)" Optional
-      }
-    }
-  }
+#[Rule.Common.DXE_DRIVER]
+#  FILE DRIVER = $(NAMED_GUID) Checksum {
+#    COMPRESS TIANO {
+#      GUIDED {
+#        DXE_DEPEX    DXE_DEPEX Optional      $(INF_OUTPUT)/$(MODULE_NAME).depex
+#        PE32         PE32                    $(INF_OUTPUT)/$(MODULE_NAME).efi
+#        UI           STRING="$(MODULE_NAME) $(VERSION_STRING)" Optional
+#      }
+#    }
+#  }
