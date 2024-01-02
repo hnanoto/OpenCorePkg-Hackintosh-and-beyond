@@ -38,6 +38,7 @@
 EFI_STATUS
 OcConfigureLogProtocol (
   IN OC_LOG_OPTIONS                   Options,
+  IN CONST CHAR8                      *LogModules,
   IN UINT32                           DisplayDelay,
   IN UINTN                            DisplayLevel,
   IN UINTN                            HaltLevel,
@@ -46,6 +47,7 @@ OcConfigureLogProtocol (
   )
 {
   (void)Options;
+  (void)LogModules;
   (void)DisplayDelay;
   (void)DisplayLevel;
   (void)HaltLevel;
