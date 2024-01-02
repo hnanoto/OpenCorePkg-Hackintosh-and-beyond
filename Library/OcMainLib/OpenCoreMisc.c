@@ -470,13 +470,16 @@ OcMiscEarlyInit (
   )
 {
   EFI_STATUS      Status;
+#ifndef CLOVER_BUILD
   CHAR8           *ConfigData;
   UINT32          ConfigDataSize;
   EFI_TIME        BootTime;
+#endif
   CONST CHAR8     *AsciiVault;
   OCS_VAULT_MODE  Vault;
   UINTN           PciDeviceInfoSize;
 
+#ifndef CLOVER_BUILD
   ConfigData = OcStorageReadFileUnicode (
                  Storage,
                  OPEN_CORE_CONFIG_PATH,
@@ -499,6 +502,7 @@ OcMiscEarlyInit (
     CpuDeadLoop ();
     return EFI_UNSUPPORTED; ///< Should be unreachable.
   }
+#endif
 
   Status = OcShimRetainProtocol (Config->Uefi.Quirks.ShimRetainProtocol);
   if (EFI_ERROR (Status)) {
@@ -593,7 +597,7 @@ OcMiscEarlyInit (
     Storage->HasVault,
     VaultKey != NULL
     ));
-
+#ifndef CLOVER_BUILD
   Status = gRT->GetTime (&BootTime, NULL);
   if (!EFI_ERROR (Status)) {
     DEBUG ((
@@ -613,7 +617,7 @@ OcMiscEarlyInit (
       Status
       ));
   }
-
+#endif
   return EFI_SUCCESS;
 }
 
