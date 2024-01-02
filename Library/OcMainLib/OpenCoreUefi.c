@@ -377,9 +377,11 @@ OcReinstallProtocols (
   IN OC_GLOBAL_CONFIG  *Config
   )
 {
+#ifndef CLOVER_BUILD
   CONST CHAR8  *AppleEventMode;
   BOOLEAN      InstallAppleEvent;
   BOOLEAN      OverrideAppleEvent;
+#endif
 
   if (OcAudioInstallProtocols (
         Config->Uefi.ProtocolOverrides.AppleAudio,
