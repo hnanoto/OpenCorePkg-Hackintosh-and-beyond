@@ -317,6 +317,14 @@ OcKernelApplyPatches (
         ));
       continue;
     }
+    
+    DEBUG ((
+      DEBUG_INFO,
+      "OC: %a patch [%u] %a\n",
+      PRINT_KERNEL_CACHE_TYPE (CacheType),
+      Index,
+      AsciiStrLen(Comment) > 0 ? Comment : "no label"
+      ));
 
     //
     // Ignore patch if:

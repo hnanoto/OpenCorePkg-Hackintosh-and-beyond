@@ -243,7 +243,7 @@ InternalRegisterSimplePointerInterface (
   SIMPLE_POINTER_INSTANCE  *Instance;
   UINTN                    Index;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalRegisterSimplePointerInterface\n"));
+//  DEBUG ((DEBUG_VERBOSE, "InternalRegisterSimplePointerInterface\n"));
 
   Instance = AllocateZeroPool (
                (mNumberOfPointerProtocols + 1) * sizeof (*Instance)
@@ -303,7 +303,7 @@ EventSimplePointerDesctructor (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "EventSimplePointerDesctructor\n"));
+//  DEBUG ((DEBUG_VERBOSE, "EventSimplePointerDesctructor\n"));
 
   if (mPointerProtocols != NULL) {
     FreePool ((VOID *)mPointerProtocols);
@@ -333,7 +333,7 @@ InternalRemoveUninstalledInstances (
   SIMPLE_POINTER_INSTANCE  *NewInstances;
   UINTN                    NumberOfMatches;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalRemoveUninstalledInstances\n"));
+//  DEBUG ((DEBUG_VERBOSE, "InternalRemoveUninstalledInstances\n"));
 
   OrgInstances = *InstancesPtr;
 
@@ -426,7 +426,7 @@ InternalSimplePointerInstallNotifyFunction (
   UINTN                        Index;
   EFI_SIMPLE_POINTER_PROTOCOL  *SimplePointer;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalSimplePointerInstallNotifyFunction\n"));
+//  DEBUG ((DEBUG_VERBOSE, "InternalSimplePointerInstallNotifyFunction\n"));
 
   if (Event != NULL) {
     Status = gBS->LocateHandleBuffer (
@@ -471,7 +471,7 @@ EventCreateSimplePointerInstallNotifyEvent (
 {
   EFI_STATUS  Status;
 
-  DEBUG ((DEBUG_VERBOSE, "EventCreateSimplePointerInstallNotifyEvent\n"));
+//  DEBUG ((DEBUG_VERBOSE, "EventCreateSimplePointerInstallNotifyEvent\n"));
 
   Status = gBS->CreateEvent (
                   EVT_NOTIFY_SIGNAL,
@@ -506,7 +506,7 @@ EventCloseSimplePointerInstallNotifyEvent (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "EventCloseSimplePointerInstallNotifyEvent\n"));
+//  DEBUG ((DEBUG_VERBOSE, "EventCloseSimplePointerInstallNotifyEvent\n"));
 
   if (mSimplePointerInstallNotifyEvent != NULL) {
     gBS->CloseEvent (mSimplePointerInstallNotifyEvent);
