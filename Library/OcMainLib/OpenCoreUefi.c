@@ -436,6 +436,7 @@ OcReinstallProtocols (
     DEBUG ((DEBUG_INFO, "OC: Failed to install cpuio/pcirootbridgeio overrides\n"));
   }
 
+#ifndef CLOVER_BUILD
   InstallAppleEvent  = TRUE;
   OverrideAppleEvent = FALSE;
 
@@ -470,6 +471,7 @@ OcReinstallProtocols (
   {
     DEBUG ((DEBUG_INFO, "OC: Failed to install apple event protocol\n"));
   }
+#endif
 
 #ifndef CLOVER_BUILD
   if (OcFirmwareVolumeInstallProtocol (Config->Uefi.ProtocolOverrides.FirmwareVolume) == NULL) {
