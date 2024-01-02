@@ -74,6 +74,9 @@ ApplyPatch (
 
 #else
 
+#include <Library/MemoryAllocationLib.h>
+#include <Library/PrintLib.h>
+
 STATIC
 BOOLEAN
 InternalFindPattern (
