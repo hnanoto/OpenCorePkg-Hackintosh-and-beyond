@@ -168,7 +168,7 @@ GetLoaderEntryLine (
   do {
     Ch = Content[*Pos];
 
-    if (!((Ch == '\0') || (Ch == '\t') || (Ch == '\n') || ((Ch >= 20) && (Ch < 128)))) {
+    if (!((Ch == '\0') || (Ch == '\t') || (Ch == '\n') || ((Ch >= 20) /*&& (Ch < 128)*/))) { // (Ch < 128) is always true because char is a 8 bits signed integer
       DEBUG ((DEBUG_WARN, "LNX: Invalid char 0x%x in %s\n", Ch, FileName));
       return EFI_INVALID_PARAMETER;
     }
