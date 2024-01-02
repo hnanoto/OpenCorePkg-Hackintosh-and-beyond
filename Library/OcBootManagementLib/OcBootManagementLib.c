@@ -44,6 +44,8 @@
 #include <Library/UefiLib.h>
 #include <Library/ResetSystemLib.h>
 
+#ifndef CLOVER_BUILD
+
 STATIC UINT32                           mSavedGopMode;
 STATIC EFI_CONSOLE_CONTROL_SCREEN_MODE  mSavedConsoleControlMode;
 STATIC INT32                            mSavedConsoleMode;
@@ -214,6 +216,7 @@ OcVerifyPassword (
 
   return Result;
 }
+#endif
 
 EFI_STATUS
 InternalRunRequestPrivilege (
@@ -254,6 +257,7 @@ InternalRunRequestPrivilege (
   return Status;
 }
 
+#ifndef CLOVER_BUILD
 EFI_STATUS
 OcRunBootPicker (
   IN OC_PICKER_CONTEXT  *Context
@@ -768,3 +772,4 @@ OcLaunchAppleBootPicker (
 
   return Status;
 }
+#endif
