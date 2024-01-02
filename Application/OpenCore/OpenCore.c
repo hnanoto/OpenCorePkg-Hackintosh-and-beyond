@@ -324,6 +324,10 @@ UefiMain (
     return EFI_NOT_FOUND;
   }
 
+  #ifdef JIEF_DEBUG
+    DEBUG((DEBUG_INFO, "OpenCore : Image base = 0x%llX\n", (UINT64)LoadedImage->ImageBase)); // do not change, it's used by grep to feed the debugger
+  #endif
+
   if (LoadedImage->DeviceHandle == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Missing boot device\n"));
     //
