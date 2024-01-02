@@ -190,14 +190,18 @@ OcLoadUefiOutputSupport (
   CONST CHAR8                      *AsciiMode;
   CONST CHAR8                      *AsciiRenderer;
   CONST CHAR8                      *GopPassThrough;
+#ifndef CLOVER_BUILD
   EFI_GRAPHICS_OUTPUT_PROTOCOL     *Gop;
+#endif
   EFI_CONSOLE_CONTROL_SCREEN_MODE  InitialMode;
   OC_CONSOLE_RENDERER              Renderer;
   UINT32                           Width;
   UINT32                           Height;
   UINT32                           Bpp;
   BOOLEAN                          SetMax;
+#ifndef CLOVER_BUILD
   UINT8                            UIScale;
+#endif
 
   GopPassThrough = OC_BLOB_GET (&Config->Uefi.Output.GopPassThrough);
   if (AsciiStrCmp (GopPassThrough, "Enabled") == 0) {
@@ -273,7 +277,7 @@ OcLoadUefiOutputSupport (
   if (Config->Uefi.Output.ReconnectOnResChange && !EFI_ERROR (Status)) {
     OcReconnectConsole ();
   }
-
+#ifndef CLOVER_BUILD
   if (Config->Uefi.Output.UgaPassThrough) {
     Status = OcProvideUgaPassThrough ();
     if (EFI_ERROR (Status)) {
@@ -318,6 +322,7 @@ OcLoadUefiOutputSupport (
                );
     DEBUG ((DEBUG_INFO, "OC: Setting UIScale to %d - %r\n", UIScale, Status));
   }
+#endif
 
   AsciiMode = OC_BLOB_GET (&Config->Uefi.Output.InitialMode);
 
