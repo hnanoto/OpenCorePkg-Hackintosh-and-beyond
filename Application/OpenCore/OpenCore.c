@@ -326,6 +326,9 @@ UefiMain (
 
   #ifdef JIEF_DEBUG
     DEBUG((DEBUG_INFO, "OpenCore : Image base = 0x%llX\n", (UINT64)LoadedImage->ImageBase)); // do not change, it's used by grep to feed the debugger
+    #ifndef CLOVER_BUILD
+	    gBS->Stall(2500000); // to give time to gdb to connect
+	  #endif
   #endif
 
   if (LoadedImage->DeviceHandle == NULL) {
