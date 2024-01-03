@@ -28,7 +28,7 @@
 
 
 #ifdef JIEF_DEBUG
-#define ALTERNATE_LOGGING
+//#define ALTERNATE_LOGGING
 #endif
 
 #ifndef ALTERNATE_LOGGING
