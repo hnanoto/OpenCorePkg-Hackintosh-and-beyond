@@ -342,7 +342,15 @@ OcExitBootServicesHandler (
 
   Config = (OC_GLOBAL_CONFIG *)Context;
 
-DEBUG ((DEBUG_INFO, "++++++++++++++++++++++++++++++++\n"));
+  CONST EFI_MEMORY_ATTRIBUTES_TABLE  *MemoryAttributesTable;
+
+  MemoryAttributesTable = OcGetMemoryAttributes (NULL);
+  UINTN nb = MemoryAttributesTable->NumberOfEntries;
+
+
+  if ( nb >= 120 ) {
+      DEBUG ((DEBUG_INFO, "MemoryMap is probably too big for XNU to start (%lld entries) - trying anyway\n", nb));
+  }
 
   //
   // Printing from ExitBootServices is dangerous, as it may cause
