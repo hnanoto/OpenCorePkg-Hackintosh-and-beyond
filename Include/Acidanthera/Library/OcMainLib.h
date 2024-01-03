@@ -51,7 +51,8 @@
 
 #define OPEN_CORE_APP_PATH  L"OpenCore.efi"
 
-#define OPEN_CORE_CONFIG_PATH      L"config-oc.plist"
+#define OPEN_CORE_CONFIG_PATH      L"config.plist"
+#define OPEN_CORE_IN_CLOVER_CONFIG_PATH      L"config-oc.plist"
 
 #define OPEN_CORE_LOG_PREFIX_PATH  L"opencore"
 

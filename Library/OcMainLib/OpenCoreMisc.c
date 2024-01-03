@@ -479,13 +479,22 @@ OcMiscEarlyInit (
   OCS_VAULT_MODE  Vault;
   UINTN           PciDeviceInfoSize;
 
+    DEBUG ((DEBUG_WARN, "OC: config %s\n", OPEN_CORE_CONFIG_PATH));
+
 #ifndef CLOVER_BUILD
   ConfigData = OcStorageReadFileUnicode (
                  Storage,
-                 OPEN_CORE_CONFIG_PATH,
+                 OPEN_CORE_IN_CLOVER_CONFIG_PATH,
                  &ConfigDataSize
                  );
+  if ( ConfigData == NULL ) {
 
+    ConfigData = OcStorageReadFileUnicode (
+                   Storage,
+                   OPEN_CORE_CONFIG_PATH,
+                   &ConfigDataSize
+                   );
+  }
   if (ConfigData != NULL) {
     DEBUG ((DEBUG_INFO, "OC: Loaded configuration of %u bytes\n", ConfigDataSize));
 
@@ -502,6 +511,14 @@ OcMiscEarlyInit (
     CpuDeadLoop ();
     return EFI_UNSUPPORTED; ///< Should be unreachable.
   }
+  #ifdef JIEF_DEBUG
+    Config->Misc.Debug.DisplayLevel = 0xFFFFFFFF;
+    Config->Misc.Debug.Target = 0x49;
+    Config->Misc.Debug.LogModules.Size = 2;
+    Config->Misc.Debug.LogModules.DynValue = 0;
+    AsciiStrCpyS(Config->Misc.Debug.LogModules.Value, 2, "*");
+  #endif
+    DEBUG ((DEBUG_WARN, "OC: config %s\n", OPEN_CORE_CONFIG_PATH));
 #endif
 
   Status = OcShimRetainProtocol (Config->Uefi.Quirks.ShimRetainProtocol);
