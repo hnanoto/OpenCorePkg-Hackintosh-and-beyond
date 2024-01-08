@@ -680,7 +680,7 @@ ResizeGpuBarsPciIo (
     }
   }
 
-  FreePool (HandleBuffer);
+  gBS->FreePool(HandleBuffer); // use gBS->FreePool instead of FreePool to avoid message from MemoryTracker
 
   if (HasSuccess) {
     return EFI_SUCCESS;

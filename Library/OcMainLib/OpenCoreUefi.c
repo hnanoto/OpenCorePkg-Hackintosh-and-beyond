@@ -1030,7 +1030,7 @@ OcLoadUefiSupport (
                         );
   DEBUG ((DEBUG_INFO, "OC: Found %u pointer devices - %r\n", HandleCount, Status));
   if (!EFI_ERROR (Status)) {
-    FreePool (HandleBuffer);
+    gBS->FreePool (HandleBuffer); // use gBS->FreePool instead of FreePool to avoid message from MemoryTracker
   }
 
   DEBUG_CODE_END ();
