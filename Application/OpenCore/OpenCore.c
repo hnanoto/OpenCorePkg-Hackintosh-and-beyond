@@ -278,6 +278,8 @@ OC_BOOTSTRAP_PROTOCOL
   .GetLoadHandle = OcGetLoadHandle,
 };
 
+#include <Library/SerialPortLib.h>
+
 EFI_STATUS
 EFIAPI
 UefiMain (
@@ -325,10 +327,13 @@ UefiMain (
   }
 
   #ifdef JIEF_DEBUG
-    DEBUG((DEBUG_INFO, "OpenCore : Image base = 0x%llX\n", (UINT64)LoadedImage->ImageBase)); // do not change, it's used by grep to feed the debugger
+    SerialPortInitialize();
+    CHAR8 buf[100];
+    AsciiSPrint(buf, sizeof(buf), "OpenCore : Image base = 0x%llX\n", (UINT64)LoadedImage->ImageBase); // do not change, it's used by grep to feed the debugger
+    Status = SerialPortWrite ((UINT8 *)buf, AsciiStrLen(buf));
     #ifndef CLOVER_BUILD
-	    gBS->Stall(2500000); // to give time to gdb to connect
-	  #endif
+//      gBS->Stall(4500000); // to give time to gdb to connect
+    #endif
   #endif
 
   if (LoadedImage->DeviceHandle == NULL) {
