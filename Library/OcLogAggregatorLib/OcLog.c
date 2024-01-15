@@ -320,7 +320,9 @@ InternalLogAddEntry (
       //
       // No return value check - SerialPortWrite either stalls or falsely return all bytes written if no serial available.
       //
+#ifndef JIEF_DEBUG
       SerialPortWrite ((UINT8 *)Private->TimingTxt, TimingLength);
+#endif
       SerialPortWrite ((UINT8 *)Private->LineBuffer, LineLength);
     }
 
@@ -385,9 +387,15 @@ InternalLogAddEntry (
     //
     // Write to internal buffer.
     //
+#ifndef JIEF_DEBUG
     Status = AsciiStrCatS (Private->AsciiBuffer, Private->AsciiBufferSize, Private->TimingTxt);
+#else
+    Status = 0;
+#endif
     if (!EFI_ERROR (Status)) {
+#ifndef JIEF_DEBUG
       Private->AsciiBufferWrittenOffset += AsciiStrLen (Private->TimingTxt);
+#endif
       Status                             = AsciiStrCatS (Private->AsciiBuffer, Private->AsciiBufferSize, Private->LineBuffer);
       if (!EFI_ERROR (Status)) {
         Private->AsciiBufferWrittenOffset += AsciiStrLen (Private->LineBuffer);
