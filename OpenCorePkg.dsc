@@ -394,18 +394,18 @@
 !endif
   gOpenCorePkgTokenSpaceGuid.PcdCanaryAllowRdtscFallback|TRUE
 
-#  # ImageLoader settings
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRtRelocAllowTargetMismatch|FALSE
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderHashProhibitOverlap|TRUE
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderLoadHeader|TRUE
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderDebugSupport|FALSE
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderAllowMisalignedOffset|FALSE
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRemoveXForWX|TRUE
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderWXorX|TRUE
+  # ImageLoader settings
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRtRelocAllowTargetMismatch|FALSE
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderHashProhibitOverlap|TRUE
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderLoadHeader|TRUE
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderDebugSupport|FALSE
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderAllowMisalignedOffset|FALSE
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRemoveXForWX|TRUE
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderWXorX|TRUE
   gEfiMdePkgTokenSpaceGuid.PcdImageLoaderAlignmentPolicy|0xFFFFFFFF
-#  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRelocTypePolicy|0xFFFFFFFF
-#  gEfiMdePkgTokenSpaceGuid.PcdImageProtectionPolicy|0x00000003
-#  gEfiMdePkgTokenSpaceGuid.PcdUefiImageFormatSupportNonFv|0x01
+  gEfiMdePkgTokenSpaceGuid.PcdImageLoaderRelocTypePolicy|0xFFFFFFFF
+  gEfiMdePkgTokenSpaceGuid.PcdImageProtectionPolicy|0x00000003
+  gEfiMdePkgTokenSpaceGuid.PcdUefiImageFormatSupportNonFv|0x01
 
 [PcdsPatchableInModule]
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterAccessWidth|8
