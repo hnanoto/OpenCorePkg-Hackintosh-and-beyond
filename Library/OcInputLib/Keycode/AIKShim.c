@@ -60,8 +60,8 @@ AIKShimTextInputReadKeyStroke (
   AMI_EFI_KEY_DATA  AmiKeyData;
 
   DEBUG ((
-    DEBUG_VERBOSE,
-    "AIKTextInputReadKeyStroke %p %p ours %p event %d",
+    DEBUG_VERBOSE*2,
+    "AIKTextInputReadKeyStroke %p %p ours %p event %d\n",
     This,
     Key,
     gAikSelf.Source.TextInput,
@@ -107,8 +107,8 @@ AIKShimTextInputReadKeyStrokeEx (
   AMI_EFI_KEY_DATA  AmiKeyData;
 
   DEBUG ((
-    DEBUG_VERBOSE,
-    "AIKTextInputReadKeyStrokeEx %p %p ours %p event %d",
+    DEBUG_VERBOSE*2,
+    "AIKTextInputReadKeyStrokeEx %p %p ours %p event %d\n",
     This,
     KeyData,
     gAikSelf.Source.TextInputEx,

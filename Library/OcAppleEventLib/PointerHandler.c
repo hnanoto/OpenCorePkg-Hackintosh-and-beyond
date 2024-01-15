@@ -613,7 +613,7 @@ InternalGetUiScaleData (
   INTN   Value;
   INT64  Factor;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetUiScaleData\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalGetUiScaleData\n"));
 
   AbsoluteValue = ABS (Movement);
   Value         = HighBitSet64 ((UINT64)(AbsoluteValue));
@@ -676,7 +676,7 @@ InternalHandleButtonInteraction (
   INT32                    VerticalMovement;
   APPLE_EVENT_TYPE         EventType;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalHandleButtonInteraction\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalHandleButtonInteraction\n"));
 
   if (!EFI_ERROR (PointerStatus)) {
     if (!Pointer->PreviousButton) {
@@ -876,7 +876,7 @@ InternalSimplePointerPollNotifyFunction (
 
   StartTime = GetPerformanceCounter ();
 
-  DEBUG ((DEBUG_VERBOSE, "InternalSimplePointerPollNotifyFunction\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalSimplePointerPollNotifyFunction\n"));
 
   Modifiers = InternalGetModifierStrokes ();
 

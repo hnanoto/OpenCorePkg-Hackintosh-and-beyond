@@ -12,7 +12,7 @@
 #include <Library/DebugLib.h>
 
 #if !defined (OC_TRACE_UPDOWNKEYS)
-#define OC_TRACE_UPDOWNKEYS  DEBUG_VERBOSE
+#define OC_TRACE_UPDOWNKEYS  0
 #endif
 
 /**

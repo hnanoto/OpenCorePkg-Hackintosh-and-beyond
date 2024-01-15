@@ -503,7 +503,7 @@ EventInputKeyFromAppleKeyCode (
   UINTN                 Index;
   APPLE_KEY_DESCRIPTOR  *Key;
 
-  DEBUG ((DEBUG_VERBOSE, "EventInputKeyFromAppleKeyCode\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "EventInputKeyFromAppleKeyCode\n"));
 
   Key = &mAppleKeyMap[0];
 

@@ -183,7 +183,7 @@ InternalFlagAllEventsReady (
   LIST_ENTRY                  *EventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE  *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalFlagAllEventsReady\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalFlagAllEventsReady\n"));
 
   EventHandleEntry = GetFirstNode (&mEventHandles);
 
@@ -209,7 +209,7 @@ InternalSignalEvents (
   LIST_ENTRY                  *EventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE  *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalSignalEvents\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalSignalEvents\n"));
 
   EventHandleEntry = GetFirstNode (&mEventHandles);
 
@@ -244,7 +244,7 @@ InternalRemoveUnregisteredEvents (
   LIST_ENTRY                  *NextEventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE  *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalRemoveUnregisteredEvents\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalRemoveUnregisteredEvents\n"));
 
   EventHandleEntry = GetFirstNode (&mEventHandles);
 

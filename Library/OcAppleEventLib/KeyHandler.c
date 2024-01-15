@@ -186,7 +186,7 @@ InternalGetModifierStrokes (
   UINTN               NumberOfKeyCodes;
   APPLE_KEY_CODE      *KeyCodes;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetModifierStrokes\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalGetModifierStrokes\n"));
 
   Status = InternalGetAppleKeyStrokes (
              &Modifiers,
@@ -217,7 +217,7 @@ InternalAppleKeyEventDataFromInputKey (
   EFI_STATUS            Status;
   APPLE_KEY_EVENT_DATA  *KeyEventData;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalAppleKeyEventDataFromInputKey\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalAppleKeyEventDataFromInputKey\n"));
 
   Status = EFI_INVALID_PARAMETER;
 
@@ -259,7 +259,7 @@ InternalGetAndRemoveReleasedKeys (
   APPLE_KEY_CODE  ReleasedKeysBuffer[12];
   UINTN           ReleasedKeysSize;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetAndRemoveReleasedKeys\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalGetAndRemoveReleasedKeys\n"));
 
   NumberOfReleasedKeys = 0;
 
@@ -335,7 +335,7 @@ InternalIsCLockOn (
   UINTN                   Index2;
   KEY_STROKE_INFORMATION  *KeyInfo;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalIsCLockOn\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalIsCLockOn\n"));
 
   //
   // Check against invalid usage
@@ -383,7 +383,7 @@ InternalGetCurrentStroke (
   KEY_STROKE_INFORMATION  *KeyInfo;
   UINTN                   Index;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetCurrentStroke\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalGetCurrentStroke\n"));
 
   KeyInfo = NULL;
 
@@ -421,7 +421,7 @@ InternalGetCurrentKeyStroke (
   BOOLEAN                 AcceptStroke;
   BOOLEAN                 Shifted;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetCurrentKeyStroke\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalGetCurrentKeyStroke\n"));
 
   if (mModifiers != Modifiers) {
     for (Index = 0; Index < ARRAY_SIZE (mKeyStrokeInfo); ++Index) {
@@ -586,7 +586,7 @@ InternalAppleEventDataFromCurrentKeyStroke (
   EFI_CONSOLE_CONTROL_SCREEN_MODE  Mode;
   UINTN                            Index;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalAppleEventDataFromCurrentKeyStroke\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalAppleEventDataFromCurrentKeyStroke\n"));
 
   ZeroMem (&InputKey, sizeof (InputKey));
 
@@ -675,7 +675,7 @@ InternalKeyStrokePollNotifyFunction (
   APPLE_MODIFIER_MAP  Modifiers;
   APPLE_MODIFIER_MAP  PartialModifers;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalKeyStrokePollNotifyFunction\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalKeyStrokePollNotifyFunction\n"));
 
   EventData.KeyData = NULL;
   Modifiers         = 0;

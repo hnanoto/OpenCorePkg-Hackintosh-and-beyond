@@ -86,7 +86,7 @@ InternalQueueEventNotifyFunction (
   LIST_ENTRY         *EventQueueEntry;
   APPLE_EVENT_QUEUE  *EventQueue;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalQueueEventNotifyFunction\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalQueueEventNotifyFunction\n"));
 
   if (mQueueEventCreated) {
     do {
@@ -157,7 +157,7 @@ EventCreateAppleEventQueueInfo (
   APPLE_EVENT_INFORMATION  *QueueInfo;
   EFI_TIME                 CreationTime;
 
-  DEBUG ((DEBUG_VERBOSE, "EventCreateAppleEventQueueInfo\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "EventCreateAppleEventQueueInfo\n"));
 
   QueueInfo = AllocateZeroPool (sizeof (*QueueInfo));
 
@@ -198,7 +198,7 @@ EventAddEventToQueue (
   EFI_STATUS         Status;
   APPLE_EVENT_QUEUE  *EventQueue;
 
-  DEBUG ((DEBUG_VERBOSE, "EventAddEventToQueue\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "EventAddEventToQueue\n"));
 
   if (mQueueEventCreated) {
     do {
@@ -232,7 +232,7 @@ EventCreateEventQueue (
   EFI_STATUS               Status;
   APPLE_EVENT_INFORMATION  *Information;
 
-  DEBUG ((DEBUG_VERBOSE, "EventCreateEventQueue\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "EventCreateEventQueue\n"));
 
   Status = EFI_INVALID_PARAMETER;
 

@@ -11,7 +11,7 @@
 #include <Library/DebugLib.h>
 
 #if !defined (OC_TRACE_TYPING)
-#define OC_TRACE_TYPING  DEBUG_VERBOSE
+#define OC_TRACE_TYPING  0
 #endif
 
 //
