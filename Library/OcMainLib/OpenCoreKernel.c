@@ -492,6 +492,12 @@ OcKernelLoadKextsAndReserve (
   for (Index = 0; Index < Config->Kernel.Force.Count; Index++) {
     Kext = Config->Kernel.Force.Values[Index];
 
+  DEBUG ((
+    DEBUG_VERBOSE,
+    "OC: Load and reserve forced Kext %a\n",
+    OC_BLOB_GET(&Kext->BundlePath)
+    ));
+
     OcKernelLoadAndReserveKext (
       Kext,
       Index,
@@ -512,6 +518,12 @@ OcKernelLoadKextsAndReserve (
   //
   for (Index = 0; Index < Config->Kernel.Add.Count; Index++) {
     Kext = Config->Kernel.Add.Values[Index];
+
+  DEBUG ((
+    DEBUG_VERBOSE,
+    "OC: Load and reserve Kext %a\n",
+    OC_BLOB_GET(&Kext->BundlePath)
+    ));
 
     OcKernelLoadAndReserveKext (
       Kext,
