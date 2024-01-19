@@ -12,6 +12,7 @@ WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 
 **/
 
+#ifndef CLOVER_BUILD
 #include <Library/OcMainLib.h>
 
 #include <Guid/AppleVariable.h>
@@ -418,3 +419,4 @@ OcLoadUefiAudioSupport (
 
   OcScheduleExitBootServices (OcAudioExitBootServices, OcAudio);
 }
+#endif

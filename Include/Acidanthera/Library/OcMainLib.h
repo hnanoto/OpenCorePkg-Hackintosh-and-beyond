@@ -297,12 +297,12 @@ OcLoadUefiOutputSupport (
   @param[in]  Storage   OpenCore storage.
   @param[out] Config    OpenCore configuration.
 **/
-VOID
-OcLoadUefiAudioSupport (
-  IN OC_STORAGE_CONTEXT  *Storage,
-  IN OC_GLOBAL_CONFIG    *Config
-  );
-
+//VOID
+//OcLoadUefiAudioSupport (
+//  IN OC_STORAGE_CONTEXT  *Storage,
+//  IN OC_GLOBAL_CONFIG    *Config
+//  );
+//
 /**
   Schedule Exit Boot Services event in TPL_APPLICATION mode.
 

@@ -78,7 +78,7 @@
   OcAppleBootPolicyLib
   OcAppleEventLib
 #  OcAppleImageConversionLib
-  OcAudioLib
+#  OcAudioLib
   OcInputLib
   OcAppleImg4Lib
   OcAppleKernelLib

@@ -389,7 +389,7 @@ OcReinstallProtocols (
   CONST CHAR8  *AppleEventMode;
   BOOLEAN      InstallAppleEvent;
   BOOLEAN      OverrideAppleEvent;
-#endif
+
 
   if (OcAudioInstallProtocols (
         Config->Uefi.ProtocolOverrides.AppleAudio,
@@ -398,7 +398,7 @@ OcReinstallProtocols (
   {
     DEBUG ((DEBUG_INFO, "OC: Disabling audio in favour of firmware implementation\n"));
   }
-
+#endif
   if (OcAppleBootPolicyInstallProtocol (Config->Uefi.ProtocolOverrides.AppleBootPolicy) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install boot policy protocol\n"));
   }
@@ -1051,9 +1051,9 @@ OcLoadUefiSupport (
   }
 
   OcLoadUefiOutputSupport (Storage, Config);
-
+#ifndef CLOVER_BUILD
   OcLoadUefiAudioSupport (Storage, Config);
-
+#endif
   gBS->CreateEvent (
          EVT_SIGNAL_EXIT_BOOT_SERVICES,
          TPL_CALLBACK,
