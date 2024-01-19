@@ -120,7 +120,7 @@ InternalGetAppleKeyStrokes (
 {
   EFI_STATUS  Status;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetAppleKeyStrokes\n"));
+  DEBUG ((DEBUG_VERBOSE*2, "InternalGetAppleKeyStrokes\n"));
 
   Status = EFI_UNSUPPORTED;
 
