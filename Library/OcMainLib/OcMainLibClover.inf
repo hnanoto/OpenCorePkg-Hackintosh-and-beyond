@@ -29,7 +29,7 @@
   OpenCoreNvram.c
   OpenCorePlatform.c
   OpenCoreUefi.c
-  OpenCoreUefiAudio.c
+#  OpenCoreUefiAudio.c
   OpenCoreUefiInOut.c
   OpenCoreVault.c
 
@@ -78,7 +78,7 @@
   OcAppleBootPolicyLib
   OcAppleEventLib
 #  OcAppleImageConversionLib
-  OcAudioLib
+#  OcAudioLib
   OcInputLib
   OcAppleImg4Lib
   OcAppleKernelLib
