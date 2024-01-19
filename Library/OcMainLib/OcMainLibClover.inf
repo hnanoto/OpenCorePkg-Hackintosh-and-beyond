@@ -29,7 +29,7 @@
   OpenCoreNvram.c
   OpenCorePlatform.c
   OpenCoreUefi.c
-  OpenCoreUefiAudio.c
+#  OpenCoreUefiAudio.c
   OpenCoreUefiInOut.c
   OpenCoreVault.c
 
