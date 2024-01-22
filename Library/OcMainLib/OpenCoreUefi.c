@@ -391,7 +391,6 @@ OcReinstallProtocols (
   BOOLEAN      OverrideAppleEvent;
 
 
-#ifndef CLOVER_BUILD
   if (OcAudioInstallProtocols (
         Config->Uefi.ProtocolOverrides.AppleAudio,
         Config->Uefi.Audio.DisconnectHda
@@ -1053,17 +1052,11 @@ OcLoadUefiSupport (
   }
 
   OcLoadUefiOutputSupport (Storage, Config);
-<<<<<<< HEAD
-#ifndef CLOVER_BUILD
-  OcLoadUefiAudioSupport (Storage, Config);
-#endif
-=======
 
 #ifndef CLOVER_BUILD
   OcLoadUefiAudioSupport (Storage, Config);
 #endif
 
->>>>>>> 7e9c25b7f5786ebb7a6d833ab5b756329a48f60f
   gBS->CreateEvent (
          EVT_SIGNAL_EXIT_BOOT_SERVICES,
          TPL_CALLBACK,
