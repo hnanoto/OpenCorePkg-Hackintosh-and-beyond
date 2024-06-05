@@ -337,6 +337,7 @@ OcExitBootServicesHandler (
   IN VOID       *Context
   )
 {
+#ifndef CLOVER_BUILD
   EFI_STATUS        Status;
   OC_GLOBAL_CONFIG  *Config;
 
@@ -346,7 +347,7 @@ OcExitBootServicesHandler (
 
   MemoryAttributesTable = OcGetMemoryAttributes (NULL);
   UINTN nb = MemoryAttributesTable->NumberOfEntries;
-
+  //gST->NumberOfTableEntries
 
   if ( nb >= 120 ) {
       DEBUG ((DEBUG_INFO, "MemoryMap is probably too big for XNU to start (%lld entries) - trying anyway\n", nb));
@@ -377,6 +378,7 @@ OcExitBootServicesHandler (
   if (Config->Uefi.Quirks.ExitBootServicesDelay > 0) {
     gBS->Stall (Config->Uefi.Quirks.ExitBootServicesDelay);
   }
+#endif
 }
 
 STATIC
