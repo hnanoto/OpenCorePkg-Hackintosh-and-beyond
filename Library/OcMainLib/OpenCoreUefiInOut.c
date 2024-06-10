@@ -244,6 +244,7 @@ OcLoadUefiOutputSupport (
     OC_BLOB_GET (&Config->Uefi.Output.Resolution)
     ));
 
+#ifndef CLOVER_BUILD
   if (SetMax || ((Width > 0) && (Height > 0))) {
     Status = OcSetConsoleResolution (
                Width,
@@ -265,7 +266,7 @@ OcLoadUefiOutputSupport (
   } else {
     Status = EFI_UNSUPPORTED;
   }
-
+#endif
   if (Config->Uefi.Output.GopBurstMode) {
     OcSetGopBurstMode ();
   }
