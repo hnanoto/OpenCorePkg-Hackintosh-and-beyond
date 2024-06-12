@@ -922,7 +922,7 @@ PATCHER_GENERIC_PATCH
   .Count       = 1,
   .Skip        = 0
 };
-
+#ifndef CLOVER_BUILD
 STATIC
 CONST UINT8
   mIOAHCIBlockStoragePatch133Find1[] = {
@@ -958,6 +958,7 @@ CONST UINT8
   0xFF, 0xFF, 0xFF, 0xFF, 0xFF
 };
 
+
 STATIC
 PATCHER_GENERIC_PATCH
   mIOAHCIBlockStoragePatch133Part1 = {
@@ -987,6 +988,7 @@ PATCHER_GENERIC_PATCH
   .Skip        = 0,
   .Limit       = 4096
 };
+#endif
 
 STATIC
 EFI_STATUS
@@ -1005,6 +1007,7 @@ PatchThirdPartyDriveSupport (
   //
   // Starting with macOS 13.3 (Darwin 22.4.0), a new set of patches are required, discovered by @vit9696.
   //
+#ifndef CLOVER_BUILD
   if (OcMatchDarwinVersion (KernelVersion, KERNEL_VERSION (KERNEL_VERSION_VENTURA, 4, 0), 0)) {
     Status = PatcherApplyGenericPatch (Patcher, &mIOAHCIBlockStoragePatch133Part1);
     if (EFI_ERROR (Status)) {
@@ -1023,6 +1026,7 @@ PatchThirdPartyDriveSupport (
 
     return Status;
   }
+#endif
 
   Status = PatcherApplyGenericPatch (Patcher, &mIOAHCIBlockStoragePatchV1);
   if (EFI_ERROR (Status)) {
