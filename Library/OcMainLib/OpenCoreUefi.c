@@ -425,12 +425,12 @@ OcReinstallProtocols (
   if (OcSmcIoInstallProtocol (Config->Uefi.ProtocolOverrides.AppleSmcIo, Config->Misc.Security.AuthRestart) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install smc i/o protocol\n"));
   }
-#endif
+
 
   if (OcAppleUserInterfaceThemeInstallProtocol (Config->Uefi.ProtocolOverrides.AppleUserInterfaceTheme) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install user interface theme protocol\n"));
   }
-
+#endif
   if (OcUnicodeCollationEngInstallProtocol (Config->Uefi.ProtocolOverrides.UnicodeCollation) == NULL) {
     DEBUG ((DEBUG_INFO, "OC: Failed to install unicode collation protocol\n"));
   }
