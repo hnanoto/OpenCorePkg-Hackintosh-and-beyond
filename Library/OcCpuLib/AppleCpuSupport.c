@@ -616,6 +616,8 @@ InternalDetectAppleProcessorType (
     case CPU_MODEL_RAPTORLAKE:
     case CPU_MODEL_METEORLAKE:
     case CPU_MODEL_ARROWLAKE:
+    case CPU_MODEL_ARROWLAKE_X:
+    case CPU_MODEL_ARROWLAKE_U:
       if (AppleMajorType == AppleProcessorMajorM3) {
         // MB101 (m3 7Y32)
         return AppleProcessorTypeCoreM3Type7; // 0x0C07
