@@ -1426,7 +1426,7 @@ InternalProcessSymbolPointers (
   MachSize = MachoGetFileSize (MachoContext);
   Result   = BaseOverflowMulAddU32 (
                DySymtab->NumIndirectSymbols,
-               MachoContext->Is32Bit ? sizeof (UINT32) : sizeof (UINT64),
+               sizeof (UINT32),
                DySymtab->IndirectSymbolsOffset,
                &OffsetTop
                );
@@ -1532,8 +1532,6 @@ InternalPrelinkKext (
   CONST MACH_NLIST_ANY       *SymbolTable;
   CONST CHAR8                *StringTable;
   UINT32                     NumSymbols;
-  CONST MACH_NLIST_ANY       *IndirectSymtab;
-  UINT32                     NumIndirectSymbols;
   CONST MACH_NLIST_ANY       *LocalSymtab;
   UINT32                     NumLocalSymbols;
   CONST MACH_NLIST_ANY       *ExternalSymtab;
@@ -1691,29 +1689,27 @@ InternalPrelinkKext (
   // For 32-bit objects, we will solve those at the same time as undefined symbols later.
   //
   if (!IsObject32) {
-    WeakTestValue      = 0;
-    NumIndirectSymbols = MachoGetIndirectSymbolTable (
-                           MachoContext,
-                           &IndirectSymtab
-                           );
-    for (Index = 0; Index < NumIndirectSymbols; ++Index) {
-      Symbol     = (MACH_NLIST_ANY *)&IndirectSymtab[Index];
-      SymbolName = MachoGetIndirectSymbolName (MachoContext, Symbol);
-      if (SymbolName == NULL) {
-        return EFI_LOAD_ERROR;
-      }
+    WeakTestValue = 0;
+    for (Index = 0; Index < NumSymbols; ++Index) {
+      Symbol = (MACH_NLIST_ANY *)&(&SymbolTable->Symbol64)[Index];
+      if ((Symbol->Symbol64.Type & MACH_N_TYPE_TYPE) == MACH_N_TYPE_INDR) {
+        SymbolName = MachoGetIndirectSymbolName (MachoContext, Symbol);
+        if (SymbolName == NULL) {
+          return EFI_LOAD_ERROR;
+        }
 
-      Result = InternalSolveSymbol (
-                 Context,
-                 Kext,
-                 SymbolName,
-                 Symbol,
-                 &WeakTestValue,
-                 UndefinedSymtab,
-                 NumUndefinedSymbols
-                 );
-      if (!Result) {
-        return EFI_LOAD_ERROR;
+        Result = InternalSolveSymbol (
+                   Context,
+                   Kext,
+                   SymbolName,
+                   Symbol,
+                   &WeakTestValue,
+                   UndefinedSymtab,
+                   NumUndefinedSymbols
+                   );
+        if (!Result) {
+          return EFI_LOAD_ERROR;
+        }
       }
     }
   }

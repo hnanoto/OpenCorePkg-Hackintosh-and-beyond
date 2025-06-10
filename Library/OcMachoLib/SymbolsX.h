@@ -181,9 +181,6 @@ MACH_X (
   ASSERT (
     (  (Symbol >= &(MACH_X (&Context->SymbolTable->Symbol))[0])
     && (Symbol < &(MACH_X (&Context->SymbolTable->Symbol))[Context->Symtab->NumSymbols]))
-         || (  (Context->DySymtab != NULL)
-            && (Symbol >= &(MACH_X (&Context->IndirectSymbolTable->Symbol))[0])
-            && (Symbol < &(MACH_X (&Context->IndirectSymbolTable->Symbol))[Context->DySymtab->NumIndirectSymbols]))
     );
   //
   // Symbol->Section is implicitly verified by MachoGetSectionByIndex() when
@@ -200,11 +197,11 @@ BOOLEAN
 MACH_X (
   InternalMachoSymbolGetDirectFileOffset
   )(
-                             IN OUT OC_MACHO_CONTEXT       *Context,
-                             IN     MACH_UINT_X            Address,
-                             OUT    UINT32                 *FileOffset,
-                             OUT    UINT32                 *MaxSize OPTIONAL
-                             ) {
+                     IN OUT OC_MACHO_CONTEXT       *Context,
+                     IN     MACH_UINT_X            Address,
+                     OUT    UINT32                 *FileOffset,
+                     OUT    UINT32                 *MaxSize OPTIONAL
+                     ) {
   MACH_UINT_X             Offset;
   MACH_UINT_X             Base;
   MACH_UINT_X             Size;
@@ -310,8 +307,8 @@ MACH_X (
   CONST MACH_DYSYMTAB_COMMAND  *DySymtab;
   CONST MACH_NLIST_X           *UndefinedSymbols;
   CONST MACH_NLIST_X           *UndefinedSymbolsTop;
-  CONST MACH_NLIST_X           *IndirectSymbols;
-  CONST MACH_NLIST_X           *IndirectSymbolsTop;
+  CONST MACH_NLIST_X           *ExternalSymbols;
+  CONST MACH_NLIST_X           *ExternalSymbolsTop;
 
   ASSERT (Context != NULL);
   ASSERT (Symbol != NULL);
@@ -336,11 +333,17 @@ MACH_X (
     return FALSE;
   }
 
-  IndirectSymbols    = MACH_X (&Context->IndirectSymbolTable->Symbol);
-  IndirectSymbolsTop = &IndirectSymbols[DySymtab->NumIndirectSymbols];
+  //
+  // If a symbol is marked as external, but is outside the external symbol
+  // range, it is likely a resolved indirect symbol.
+  //
+  if (Symbol->Type == (MACH_N_TYPE_ABS | MACH_N_TYPE_EXT)) {
+    ExternalSymbols    = &(MACH_X (&Context->SymbolTable->Symbol))[DySymtab->ExternalSymbolsIndex];
+    ExternalSymbolsTop = &ExternalSymbols[DySymtab->NumExternalSymbols];
 
-  if ((Symbol >= IndirectSymbols) && (Symbol < IndirectSymbolsTop)) {
-    return FALSE;
+    if (!((Symbol >= ExternalSymbols) && (Symbol < ExternalSymbolsTop))) {
+      return FALSE;
+    }
   }
 
   return MACH_X (MachoSymbolIsDefined)(Symbol);
