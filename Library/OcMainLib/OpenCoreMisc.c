@@ -87,7 +87,7 @@ OcStoreLoadPath (
     ));
 }
 
-#ifndef CLOVER_BUILD
+//#ifndef CLOVER_BUILD
 STATIC
 EFI_STATUS
 ProduceDebugReport (
@@ -98,9 +98,10 @@ ProduceDebugReport (
   EFI_FILE_PROTOCOL  *Fs;
   EFI_FILE_PROTOCOL  *SysReport;
   EFI_FILE_PROTOCOL  *SubReport;
-  OC_CPU_INFO        CpuInfo;
+//  OC_CPU_INFO        CpuInfo;
 
-  OcCpuScanProcessor (&CpuInfo);
+//  OcCpuScanProcessor (&CpuInfo);
+DEBUG ((DEBUG_INFO, "OC: ProduceDebugReport\n"));
 
   if (VolumeHandle != NULL) {
     Fs = OcLocateRootVolume (VolumeHandle, NULL);
@@ -173,35 +174,35 @@ ProduceDebugReport (
 
   DEBUG ((DEBUG_INFO, "OC: SMBIOS dumping - %r\n", Status));
 
-  Status = OcSafeFileOpen (
-             SysReport,
-             &SubReport,
-             L"Audio",
-             EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE,
-             EFI_FILE_DIRECTORY
-             );
-  if (!EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_INFO, "OC: Dumping audio for report...\n"));
-    Status = OcAudioDump (SubReport);
-    SubReport->Close (SubReport);
-  }
+//  Status = OcSafeFileOpen (
+//             SysReport,
+//             &SubReport,
+//             L"Audio",
+//             EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE,
+//             EFI_FILE_DIRECTORY
+//             );
+//  if (!EFI_ERROR (Status)) {
+//    DEBUG ((DEBUG_INFO, "OC: Dumping audio for report...\n"));
+//    Status = OcAudioDump (SubReport);
+//    SubReport->Close (SubReport);
+//  }
+//
+//  DEBUG ((DEBUG_INFO, "OC: Audio dumping - %r\n", Status));
 
-  DEBUG ((DEBUG_INFO, "OC: Audio dumping - %r\n", Status));
-
-  Status = OcSafeFileOpen (
-             SysReport,
-             &SubReport,
-             L"CPU",
-             EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE,
-             EFI_FILE_DIRECTORY
-             );
-  if (!EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_INFO, "OC: Dumping CPUInfo for report...\n"));
-    Status = OcCpuInfoDump (&CpuInfo, SubReport);
-    SubReport->Close (SubReport);
-  }
-
-  DEBUG ((DEBUG_INFO, "OC: CPUInfo dumping - %r\n", Status));
+//  Status = OcSafeFileOpen (
+//             SysReport,
+//             &SubReport,
+//             L"CPU",
+//             EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE,
+//             EFI_FILE_DIRECTORY
+//             );
+//  if (!EFI_ERROR (Status)) {
+//    DEBUG ((DEBUG_INFO, "OC: Dumping CPUInfo for report...\n"));
+//    Status = OcCpuInfoDump (&CpuInfo, SubReport);
+//    SubReport->Close (SubReport);
+//  }
+//
+//  DEBUG ((DEBUG_INFO, "OC: CPUInfo dumping - %r\n", Status));
 
   Status = OcSafeFileOpen (
              SysReport,
@@ -239,6 +240,7 @@ ProduceDebugReport (
   return EFI_SUCCESS;
 }
 
+#ifndef CLOVER_BUILD
 STATIC
 EFI_STATUS
 EFIAPI
@@ -437,7 +439,7 @@ ClOcReadConfigurationFile(
 
   ConfigData = OcStorageReadFileUnicode (
     Storage,
-    OPEN_CORE_CONFIG_PATH,
+    configPath,
     &ConfigDataSize
     );
 
@@ -479,9 +481,9 @@ OcMiscEarlyInit (
   OCS_VAULT_MODE  Vault;
   UINTN           PciDeviceInfoSize;
 
+#ifndef CLOVER_BUILD
     DEBUG ((DEBUG_WARN, "OC: config %s\n", OPEN_CORE_CONFIG_PATH));
 
-#ifndef CLOVER_BUILD
   ConfigData = OcStorageReadFileUnicode (
                  Storage,
                  OPEN_CORE_IN_CLOVER_CONFIG_PATH,
@@ -708,6 +710,48 @@ OcMiscMiddleInit (
   BOOLEAN                          HasShortLauncher;
   BOOLEAN                          HasSystemLauncher;
 
+
+  DEBUG((DEBUG_INFO, "UEFI Quirks\n"));
+  DEBUG((DEBUG_INFO, "EBSD %d  TST %d  AHS %d  DSP %d  EVA %d  EV %d  FUS %d  IIFR %d  RGB %d  RUPR %d  RUO %d  ROR %d  RBVR %d  SRP %d  UFC %d  FOWF %d\n",
+      Config->Uefi.Quirks.ExitBootServicesDelay,
+      Config->Uefi.Quirks.TscSyncTimeout,
+      Config->Uefi.Quirks.ActivateHpetSupport,
+      Config->Uefi.Quirks.DisableSecurityPolicy,
+      Config->Uefi.Quirks.EnableVectorAcceleration,
+      Config->Uefi.Quirks.EnableVmx,
+      Config->Uefi.Quirks.ForgeUefiSupport,
+      Config->Uefi.Quirks.IgnoreInvalidFlexRatio,
+      Config->Uefi.Quirks.ResizeGpuBars,
+      Config->Uefi.Quirks.ResizeUsePciRbIo,
+      Config->Uefi.Quirks.ReleaseUsbOwnership,
+      Config->Uefi.Quirks.ReloadOptionRoms,
+      Config->Uefi.Quirks.RequestBootVarRouting,
+      Config->Uefi.Quirks.ShimRetainProtocol,
+      Config->Uefi.Quirks.UnblockFsConnect,
+      Config->Uefi.Quirks.ForceOcWriteFlash));
+
+  DEBUG((DEBUG_INFO, "Kernel quirks\n"));
+  DEBUG((DEBUG_INFO, "ACPCL %d AXCL %d AXEM %d AXFB %d CSG %d DIM %d DLJ %d DRC %d DPM %d EBTFF %d EDI %d FAI %d IPBS %d LKP %d PNKD %d PTKP %d TPD %d XPL %d PCC %d\n",
+      Config->Kernel.Quirks.AppleCpuPmCfgLock,
+      Config->Kernel.Quirks.AppleXcpmCfgLock,
+      Config->Kernel.Quirks.AppleXcpmExtraMsrs,
+      Config->Kernel.Quirks.AppleXcpmForceBoost,
+      Config->Kernel.Quirks.CustomSmbiosGuid,
+      Config->Kernel.Quirks.DisableIoMapper,
+      Config->Kernel.Quirks.DisableLinkeditJettison,
+      Config->Kernel.Quirks.DisableRtcChecksum,
+      Config->Kernel.Emulate.DummyPowerManagement,
+      Config->Kernel.Quirks.ExtendBTFeatureFlags,
+      Config->Kernel.Quirks.ExternalDiskIcons,
+      Config->Kernel.Quirks.IncreasePciBarSize,
+      Config->Kernel.Quirks.ForceAquantiaEthernet,
+      Config->Kernel.Quirks.LapicKernelPanic,
+      Config->Kernel.Quirks.PanicNoKextDump,
+      Config->Kernel.Quirks.PowerTimeoutKernelPanic,
+      Config->Kernel.Quirks.ThirdPartyDrives,
+      Config->Kernel.Quirks.XhciPortLimit,
+      Config->Kernel.Quirks.ProvideCurrentCpuInfo));
+
   if ((Config->Misc.Security.ExposeSensitiveData & OCS_EXPOSE_BOOT_PATH) != 0) {
     OcStoreLoadPath (LoadPath);
   }
@@ -833,18 +877,21 @@ OcMiscLateInit (
   return EFI_SUCCESS;
 }
 
-#ifndef CLOVER_BUILD
+//#ifndef CLOVER_BUILD
 VOID
 OcMiscLoadSystemReport (
   IN  OC_GLOBAL_CONFIG  *Config,
   IN  EFI_HANDLE        LoadHandle OPTIONAL
   )
 {
+    DEBUG ((DEBUG_INFO, "ProduceDebugReport1 LoadHandle=%d\n", LoadHandle!=NULL));
   if ((LoadHandle != NULL) && Config->Misc.Debug.SysReport) {
+    DEBUG ((DEBUG_INFO, "ProduceDebugReport\n"));
     ProduceDebugReport (LoadHandle);
   }
 }
 
+#ifndef CLOVER_BUILD
 VOID
 OcMiscBoot (
   IN  OC_STORAGE_CONTEXT    *Storage,

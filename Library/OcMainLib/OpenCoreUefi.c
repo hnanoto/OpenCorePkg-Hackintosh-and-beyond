@@ -337,7 +337,7 @@ OcExitBootServicesHandler (
   IN VOID       *Context
   )
 {
-#ifndef CLOVER_BUILD
+//#ifndef CLOVER_BUILD
   EFI_STATUS        Status;
   OC_GLOBAL_CONFIG  *Config;
 
@@ -378,7 +378,7 @@ OcExitBootServicesHandler (
   if (Config->Uefi.Quirks.ExitBootServicesDelay > 0) {
     gBS->Stall (Config->Uefi.Quirks.ExitBootServicesDelay);
   }
-#endif
+//#endif
 }
 
 STATIC
