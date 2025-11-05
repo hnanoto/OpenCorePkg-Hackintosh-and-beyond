@@ -60,7 +60,13 @@ ${!SELECTED_DEVELOPER_DIR}" ]; then
   if [ -n "${ACID32}" ]; then
     echo "OVERRIDE_PYTHON3=${DEVELOPER_DIR}/usr/bin/python3" >> "$GITHUB_ENV"
     export OVERRIDE_PYTHON3="${DEVELOPER_DIR}/usr/bin/python3"
-    src=$(curl -Lfs https://raw.githubusercontent.com/acidanthera/ocbuild/master/clang32-bootstrap.sh) && eval "$src" || exit 1
+    if [ -f .github/scripts/clang32-bootstrap.sh ]; then
+      chmod +x .github/scripts/clang32-bootstrap.sh
+      .github/scripts/clang32-bootstrap.sh
+    else
+      echo "ERROR: .github/scripts/clang32-bootstrap.sh não encontrado" >&2
+      exit 1
+    fi
   fi
 fi
 
