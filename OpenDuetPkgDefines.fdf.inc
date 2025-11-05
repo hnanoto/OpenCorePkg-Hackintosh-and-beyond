@@ -20,7 +20,7 @@
   NumBlocks          = 0x8        #GenFv image size 0x80000
 !else
 !if ($(TARGET) == DEBUG)
-  NumBlocks          = 0xe        #GenFv image size 0xe0000
+  NumBlocks          = 0x12       #GenFv image size 0x120000
 !else
   NumBlocks          = 0x25       #GenFv image size 0x250000
 !endif
