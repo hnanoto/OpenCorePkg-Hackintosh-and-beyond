@@ -55,17 +55,19 @@ typedef struct {
 /**
   Print new entry name.
 **/
-#define CONTEXT_ENTER(Context, Name) \
-//  DEBUG (( \
-//    DEBUG_VERBOSE, \
-//    "%a 0x%x (looking for %c%c%c%c)\n", \
-//    (Name), \
-//    (UINT32) ((Context)->CurrentOpcode - (Context)->TableStart), \
-//    ((CHAR8 *) (Context)->CurrentIdentifier)[3], \
-//    ((CHAR8 *) (Context)->CurrentIdentifier)[2], \
-//    ((CHAR8 *) (Context)->CurrentIdentifier)[1], \
-//    ((CHAR8 *) (Context)->CurrentIdentifier)[0] \
-//    ));
+#define CONTEXT_ENTER(Context, Name)  
+/*
+  DEBUG (( \
+    DEBUG_VERBOSE, \
+    "%a 0x%x (looking for %c%c%c%c)\n", \
+    (Name), \
+    (UINT32) ((Context)->CurrentOpcode - (Context)->TableStart), \
+    ((CHAR8 *) (Context)->CurrentIdentifier)[3], \
+    ((CHAR8 *) (Context)->CurrentIdentifier)[2], \
+    ((CHAR8 *) (Context)->CurrentIdentifier)[1], \
+    ((CHAR8 *) (Context)->CurrentIdentifier)[0] \
+    ));
+*/
 
 #define PRINT_ACPI_NAME(Str, Name, Length) \
   DEBUG (( \
