@@ -101,7 +101,7 @@ ParseNameString (
   }
 
   if (NamePathStart != NULL) {
-    PRINT_ACPI_NAME ("Read name", *NamePathStart, *PathLength);
+//    PRINT_ACPI_NAME ("Read name", *NamePathStart, *PathLength);
   }
 
   CONTEXT_DECREASE_NESTING (Context);
@@ -320,7 +320,7 @@ ParseScopeOrDevice (
     Context->CurrentIdentifier = Context->PathStart;
   }
 
-  PRINT_ACPI_NAME ("Entered scope", ScopeNameStart, ScopeNameLength);
+//  PRINT_ACPI_NAME ("Entered scope", ScopeNameStart, ScopeNameLength);
 
   while (Context->CurrentOpcode < ScopeEnd) {
     Status = InternalAcpiParseTerm (
@@ -333,7 +333,7 @@ ParseScopeOrDevice (
     }
   }
 
-  PRINT_ACPI_NAME ("Left scope", ScopeNameStart, ScopeNameLength);
+//  PRINT_ACPI_NAME ("Left scope", ScopeNameStart, ScopeNameLength);
 
   Context->CurrentIdentifier = CurrentPath;
   CONTEXT_DECREASE_NESTING (Context);
@@ -1737,7 +1737,7 @@ InternalAcpiParseTerm (
   ASSERT (Result != NULL);
   CONTEXT_INCREASE_NESTING (Context);
 
-  DEBUG ((DEBUG_VERBOSE, "Opcode: %x\n", Context->CurrentOpcode[0]));
+//  DEBUG ((DEBUG_VERBOSE, "Opcode: %x\n", Context->CurrentOpcode[0]));
 
   switch (Context->CurrentOpcode[0]) {
     case AML_ALIAS_OP:   // Alias

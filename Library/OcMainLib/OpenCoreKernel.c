@@ -1352,6 +1352,11 @@ OcKernelFileOpen (
 
       DEBUG ((DEBUG_INFO, "OC: Prelinked status - %r\n", PrelinkedStatus));
 
+#ifdef JIEF_DEBUG
+//      extern OC_STORAGE_CONTEXT mOpenCoreStorage;
+//      OcSetFileData(mOpenCoreStorage.Storage, L"kernel_cl_jief", Kernel, KernelSize);
+#endif
+
       Status = OcGetFileModificationTime (*NewHandle, &ModificationTime);
       if (EFI_ERROR (Status)) {
         ZeroMem (&ModificationTime, sizeof (ModificationTime));

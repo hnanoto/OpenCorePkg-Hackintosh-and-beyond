@@ -46,7 +46,7 @@ STATIC
 OC_GLOBAL_CONFIG
   mOpenCoreConfiguration;
 
-STATIC
+//STATIC
 OC_STORAGE_CONTEXT
   mOpenCoreStorage;
 
